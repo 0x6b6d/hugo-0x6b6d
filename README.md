@@ -21,13 +21,13 @@ A dark, terminal aesthetic blog theme
 
 ```bash
 # As a git submodule (recommended)
-git submodule add https://github.com/you/0x6b6d themes/0x6b6d
+git submodule add https://github.com/0x6b6d/0x6b6d-theme.git themes/0x6b6d-theme
 
 # Or copy the folder
 cp -r 0x6b6d-theme themes/0x6b6d
 ```
 
-Set `theme = "0x6b6d"` in your `hugo.toml`. Copy `hugo.example.toml` as a starting point.
+Set `theme = "0x6b6d-theme"` in your `hugo.toml`. Copy `hugo.example.toml` as a starting point.
 
 ## Content structure
 
