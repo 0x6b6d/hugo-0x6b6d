@@ -1,6 +1,6 @@
 # 0x6b6d Hugo Theme
 
-A dark, terminal-aesthetic blog theme. Color DNA lifted from the 0x6b6d.dev 404 page: near-black background, white type, electric purple accents, and signature purple-tinted info boxes.
+A dark, terminal aesthetic blog theme
 
 ## Features
 
