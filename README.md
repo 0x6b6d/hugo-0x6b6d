@@ -24,7 +24,7 @@ A dark, terminal aesthetic blog theme
 git submodule add https://github.com/0x6b6d/0x6b6d-theme.git themes/0x6b6d-theme
 
 # Or copy the folder
-cp -r 0x6b6d-theme themes/0x6b6d
+cp -r 0x6b6d-theme themes/0x6b6d-theme
 ```
 
 Set `theme = "0x6b6d-theme"` in your `hugo.toml`. Copy `hugo.example.toml` as a starting point.
