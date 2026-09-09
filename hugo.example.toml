@@ -69,3 +69,33 @@ enableEmoji = true
   name   = "Posts"
   url    = "/posts/"
   weight = 2
+
+  [params.theme]
+  # Core accent
+  # Nothing else needs to be set for these to follow along.
+  accent         = "#2563eb"
+  accentBright   = "#3b82f6"
+
+  # Neutrals
+  #leave these out if you're happy with the dark grays;
+  # only set them if you want the base palette (not just the accent) to change.
+  bg             = "#161619"
+  bgRaised       = "#1c1c20"
+  text           = "#ffffff"
+  textMuted      = "#888888"
+  textDim        = "#555555"
+  line           = "#2a2a2e"
+
+  # Syntax highlighting
+  # independent of "accent" above. Without these,
+  # code blocks keep their purple keyword/tag color while the rest of
+  # the site goes blue. Set them if you want a fully unified blue theme.
+  syntaxKeyword  = "#5b8def"   # keywords, tags, builtins
+  syntaxFunction = "#82aaff"   # functions, attributes, decorators (already blue-ish, fine as-is)
+  syntaxClass    = "#ffcb6b"   # class names, namespaces — unrelated to purple, leave alone
+  syntaxVariable = "#f07178"   # variables — unrelated to purple, leave alone
+  syntaxString   = "#c3e88d"   # strings/literals — unrelated to purple, leave alone
+  syntaxNumber   = "#f78c6c"   # numbers/constants — unrelated to purple, leave alone
+  syntaxOperator = "#89ddff"   # operators/punctuation — unrelated to purple, leave alone
+  syntaxComment  = "#637777"   # comments — unrelated to purple, leave alone
+  syntaxError    = "#ff5f57"   # errors/exceptions — unrelated to purple, leave alone

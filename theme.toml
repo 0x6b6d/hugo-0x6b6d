@@ -6,7 +6,7 @@
 name = "0x6b6d"
 license = "MIT"
 licenselink = "https://opensource.org/licenses/MIT"
-description = "A dark, terminal-aesthetic blog theme inspired by 0x6b6d.dev"
+description = "A dark, terminal aesthetic blog theme inspired by 0x6b6d.dev"
 homepage = ""
 tags = ["blog", "dark", "minimal", "terminal", "monospace"]
 features = ["blog", "rss"]

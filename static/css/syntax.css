@@ -1,21 +1,22 @@
 /* =============================================================
-   0x6b6d Syntax Highlighting — Chroma (noClasses = false)
-   Custom dark theme tuned to the purple palette.
-   Hugo outputs .chroma spans; this file colors them.
-   ============================================================= */
+ *  0x6b6d Syntax Highlighting — Chroma (noClasses = false)
+ *  Colors come from CSS variables defined in main.css :root,
+ *  so overriding --syntax-* there (or via theme config) restyles
+ *  code blocks too, not just the rest of the site.
+ *  ============================================================= */
 
 /* Wrapper */
 .highlight { position: relative; }
 
 /* Reset — all spans inside a code block inherit neutral first */
-.chroma { color: #e2e2e2; }
+.chroma { color: var(--syntax-fg); }
 
 /* ── Errors ── */
-.chroma .err { color: #ff5f57; }
+.chroma .err { color: var(--syntax-error); }
 
 /* ── Line numbers ── */
 .chroma .ln,
-.chroma .lnt { color: #555565; user-select: none; padding-right: 16px; }
+.chroma .lnt { color: var(--syntax-linenum); user-select: none; padding-right: 16px; }
 
 /* ── Keywords ── */
 .chroma .k,
@@ -24,32 +25,32 @@
 .chroma .kn,
 .chroma .kp,
 .chroma .kr,
-.chroma .kt { color: #c792ea; font-weight: 600; }   /* soft purple */
+.chroma .kt { color: var(--syntax-keyword); font-weight: 600; }
 
 /* ── Names ── */
-.chroma .n  { color: #e2e2e2; }
-.chroma .na { color: #82aaff; }   /* attribute — blue */
-.chroma .nb { color: #c792ea; }   /* builtin — purple */
-.chroma .nc { color: #ffcb6b; }   /* class name — gold */
-.chroma .no { color: #f78c6c; }   /* constant — orange */
-.chroma .nd { color: #82aaff; }   /* decorator — blue */
-.chroma .ni { color: #e2e2e2; }
-.chroma .ne { color: #ff5f57; }   /* exception — red */
+.chroma .n  { color: var(--syntax-fg); }
+.chroma .na { color: var(--syntax-function); }   /* attribute */
+.chroma .nb { color: var(--syntax-keyword); }    /* builtin */
+.chroma .nc { color: var(--syntax-class); }      /* class name */
+.chroma .no { color: var(--syntax-number); }     /* constant */
+.chroma .nd { color: var(--syntax-function); }   /* decorator */
+.chroma .ni { color: var(--syntax-fg); }
+.chroma .ne { color: var(--syntax-error); }      /* exception */
 .chroma .nf,
-.chroma .fm { color: #82aaff; }   /* function — blue */
-.chroma .nl { color: #e2e2e2; }
-.chroma .nn { color: #ffcb6b; }   /* namespace — gold */
-.chroma .nx { color: #82aaff; }
-.chroma .py { color: #e2e2e2; }
-.chroma .nt { color: #c792ea; }   /* tag — purple */
+.chroma .fm { color: var(--syntax-function); }   /* function */
+.chroma .nl { color: var(--syntax-fg); }
+.chroma .nn { color: var(--syntax-class); }      /* namespace */
+.chroma .nx { color: var(--syntax-function); }
+.chroma .py { color: var(--syntax-fg); }
+.chroma .nt { color: var(--syntax-keyword); }    /* tag */
 .chroma .nv,
 .chroma .vc,
 .chroma .vg,
-.chroma .vi { color: #f07178; }   /* variable — pink-red */
+.chroma .vi { color: var(--syntax-variable); }
 
 /* ── Literals ── */
-.chroma .l  { color: #c3e88d; }
-.chroma .ld { color: #c3e88d; }
+.chroma .l  { color: var(--syntax-string); }
+.chroma .ld { color: var(--syntax-string); }
 
 /* Strings */
 .chroma .s,
@@ -65,7 +66,7 @@
 .chroma .sx,
 .chroma .sr,
 .chroma .s1,
-.chroma .ss { color: #c3e88d; }   /* string — green */
+.chroma .ss { color: var(--syntax-string); }
 
 /* Numbers */
 .chroma .m,
@@ -74,14 +75,14 @@
 .chroma .mh,
 .chroma .mi,
 .chroma .mo,
-.chroma .il { color: #f78c6c; }   /* number — orange */
+.chroma .il { color: var(--syntax-number); }
 
 /* ── Operators ── */
 .chroma .o,
-.chroma .ow { color: #89ddff; }   /* operator — cyan */
+.chroma .ow { color: var(--syntax-operator); }
 
 /* ── Punctuation ── */
-.chroma .p  { color: #89ddff; }
+.chroma .p  { color: var(--syntax-operator); }
 
 /* ── Comments ── */
 .chroma .c,
@@ -90,23 +91,23 @@
 .chroma .c1,
 .chroma .cs,
 .chroma .cp,
-.chroma .cpf { color: #637777; font-style: italic; }   /* muted teal-grey */
+.chroma .cpf { color: var(--syntax-comment); font-style: italic; }
 
 /* ── Generic ── */
-.chroma .g  { color: #e2e2e2; }
-.chroma .gd { color: #ff5f57; background: rgba(255,95,87,0.1); }  /* diff del */
+.chroma .g  { color: var(--syntax-fg); }
+.chroma .gd { color: var(--syntax-error); background: color-mix(in srgb, var(--syntax-error) 10%, transparent); }   /* diff del */
 .chroma .ge { font-style: italic; }
-.chroma .gr { color: #ff5f57; }
-.chroma .gh { color: #8b4bbf; font-weight: bold; }
-.chroma .gi { color: #c3e88d; background: rgba(195,232,141,0.1); } /* diff add */
-.chroma .go { color: #888; }
-.chroma .gp { color: #555565; user-select: none; }
+.chroma .gr { color: var(--syntax-error); }
+.chroma .gh { color: var(--accent-bright); font-weight: bold; }
+.chroma .gi { color: var(--syntax-string); background: color-mix(in srgb, var(--syntax-string) 10%, transparent); } /* diff add */
+.chroma .go { color: var(--text-muted); }
+.chroma .gp { color: var(--syntax-linenum); user-select: none; }
 .chroma .gs { font-weight: bold; }
-.chroma .gu { color: #8b4bbf; }
-.chroma .gt { color: #ff5f57; }
+.chroma .gu { color: var(--accent-bright); }
+.chroma .gt { color: var(--syntax-error); }
 .chroma .gl { text-decoration: underline; }
 
 /* ── Special: make the pre background match theme ── */
 .highlight pre {
-  background: #1c1c20 !important;
+  background: var(--bg-raised) !important;
 }

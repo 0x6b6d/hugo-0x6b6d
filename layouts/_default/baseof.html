@@ -28,9 +28,34 @@
   <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
   {{ end -}}
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='10' fill='%23613583'/></svg>">
+  {{- $accentHex := "#613583" }}
+  {{- with .Site.Params.theme }}{{ with .accent }}{{ $accentHex = . }}{{ end }}{{ end }}
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='10' fill='{{ replace $accentHex "#" "%23" }}'/></svg>">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+  {{- with .Site.Params.theme }}
+  <style>
+    :root {
+      {{- with .accent }}--accent: {{ . }};{{ end }}
+      {{- with .accentBright }}--accent-bright: {{ . }};{{ end }}
+      {{- with .bg }}--bg: {{ . }};{{ end }}
+      {{- with .bgRaised }}--bg-raised: {{ . }};{{ end }}
+      {{- with .text }}--text: {{ . }};{{ end }}
+      {{- with .textMuted }}--text-muted: {{ . }};{{ end }}
+      {{- with .textDim }}--text-dim: {{ . }};{{ end }}
+      {{- with .line }}--line: {{ . }};{{ end }}
+      {{- with .syntaxKeyword }}--syntax-keyword: {{ . }};{{ end }}
+      {{- with .syntaxString }}--syntax-string: {{ . }};{{ end }}
+      {{- with .syntaxNumber }}--syntax-number: {{ . }};{{ end }}
+      {{- with .syntaxFunction }}--syntax-function: {{ . }};{{ end }}
+      {{- with .syntaxClass }}--syntax-class: {{ . }};{{ end }}
+      {{- with .syntaxVariable }}--syntax-variable: {{ . }};{{ end }}
+      {{- with .syntaxOperator }}--syntax-operator: {{ . }};{{ end }}
+      {{- with .syntaxComment }}--syntax-comment: {{ . }};{{ end }}
+      {{- with .syntaxError }}--syntax-error: {{ . }};{{ end }}
+    }
+  </style>
+  {{- end }}
   {{ block "head_extra" . }}{{ end }}
 </head>
 <body>

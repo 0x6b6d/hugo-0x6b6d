@@ -1,27 +1,40 @@
 /* =============================================================
-   0x6b6d Theme — main.css
-   Color palette derived from 0x6b6d.dev 404 page
-   ============================================================= */
+ *  0x6b6d Theme — main.css
+ *  Color palette derived from 0x6b6d.dev 404 page
+ *  ============================================================= */
 
 :root {
   --bg:            #161619;
   --bg-raised:     #1c1c20;
-  --bg-card:       rgba(97, 53, 131, 0.08);
-  --bg-card-hover: rgba(97, 53, 131, 0.14);
+  --bg-card:       color-mix(in srgb, var(--accent) 8%, transparent);
+  --bg-card-hover: color-mix(in srgb, var(--accent) 14%, transparent);
   --text:          #ffffff;
   --text-muted:    #888888;
   --text-dim:      #555555;
   --accent:        #613583;
   --accent-bright: #8b4bbf;
-  --accent-glow:   rgba(97, 53, 131, 0.35);
+  --accent-glow:   color-mix(in srgb, var(--accent) 35%, transparent);
   --line:          #2a2a2e;
-  --line-accent:   #613583;
+  --line-accent:   var(--accent);
   --radius:        4px;
   --font-mono:     "Courier New", Courier, monospace;
   --font-body:     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-ui:       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --max-w:         760px;
   --max-w-wide:    1100px;
+
+  /* Syntax highlighting (Chroma) — see syntax.css */
+  --syntax-fg:       #e2e2e2;
+  --syntax-keyword:  #c792ea;
+  --syntax-string:   #c3e88d;
+  --syntax-number:   #f78c6c;
+  --syntax-function: #82aaff;
+  --syntax-class:    #ffcb6b;
+  --syntax-variable: #f07178;
+  --syntax-operator: #89ddff;
+  --syntax-comment:  #637777;
+  --syntax-error:    #ff5f57;
+  --syntax-linenum:  #555565;
 }
 
 /* ── Reset ── */
@@ -360,14 +373,14 @@ img { max-width: 100%; display: block; border-radius: var(--radius); }
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--accent-bright);
-  background: rgba(97, 53, 131, 0.15);
-  border: 1px solid rgba(97, 53, 131, 0.25);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
   padding: 2px 8px;
   border-radius: 2px;
   transition: background 0.2s, border-color 0.2s;
 }
 .tag:hover {
-  background: rgba(97, 53, 131, 0.28);
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
   border-color: var(--accent-bright);
   color: var(--text);
 }
@@ -473,7 +486,7 @@ img { max-width: 100%; display: block; border-radius: var(--radius); }
 .post-content blockquote {
   border-left: 3px solid var(--line-accent);
   padding: 18px 22px;
-  background: rgba(97, 53, 131, 0.1);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   border-radius: 0 var(--radius) var(--radius) 0;
   margin: 28px 0;
 }
@@ -538,8 +551,8 @@ img { max-width: 100%; display: block; border-radius: var(--radius); }
 .post-content code {
   font-family: var(--font-mono);
   font-size: 13px;
-  background: rgba(97, 53, 131, 0.12);
-  border: 1px solid rgba(97, 53, 131, 0.2);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
   padding: 2px 7px;
   border-radius: 3px;
   color: var(--accent-bright);
