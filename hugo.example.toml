@@ -1,0 +1,71 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "Example Site"
+theme = "0x6b6d-theme"
+paginate = 10
+enableRobotsTXT = true
+enableEmoji = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  # noClasses = false means Hugo emits <span class="k"> etc.
+  # The theme's syntax.css file provides the default colors.
+  # Set "style" to a Chroma style name (e.g. "dracula") to use
+  # Hugo's built-in highlighting instead — but then syntax.css
+  # won't apply, so pick one or the other.
+  noClasses = false
+  lineNos = false
+  tabWidth = 2
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[params]
+  description    = "Your Description."
+  author         = "Your Name"
+  heroEyebrow    = "Personal blog"
+  heroTitle      = "example.com"
+  heroSubtitle   = "Your Subtitle."
+  footerText     = "Built with Hugo · 0x6b6d theme"
+  ogImage        = "/og.png"   # optional
+
+  # Section under content/ that the homepage pulls from
+  postsSection = "posts"
+
+  # Site logo text shown top-left. Falls back to `title` above if unset.
+  logoText       = "blog.example.com"
+
+  # Name shown in the footer copyright line. Falls back to `title` if unset.
+  copyrightName  = "example.com"
+
+  # Optional: overrides the "Blog" label on the nav submenu trigger.
+  # blogNavLabel = "Blog"
+
+  [params.social]
+    github   = "yourusername"
+    twitter  = "yourusername"
+
+# Links to your other sites/subdomains, shown in the main nav.
+# Add or remove entries freely — no template edits needed.
+# `newTab = true` is optional (opens in a new tab).
+[[params.externalNav]]
+  name = "Home"
+  url  = "https://example.com"
+
+[[params.externalNav]]
+  name = "GitHub"
+  url  = "https://github.com/yourusername"
+  newTab = true
+
+[[menu.main]]
+  name   = "Home"
+  url    = "/"
+  weight = 1
+
+[[menu.main]]
+  name   = "Posts"
+  url    = "/posts/"
+  weight = 2

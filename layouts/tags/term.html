@@ -1,0 +1,72 @@
+{{ define "main" }}
+<div class="container">
+
+  <section class="tag-page-header">
+    <div class="hero-eyebrow">Tag</div>
+    <h1><span>#</span>{{ .Title }}</h1>
+    <p style="color: var(--text-muted); margin-top: 10px; font-family: var(--font-mono); font-size: 13px;">
+      {{ len .Pages }} post{{ if ne (len .Pages) 1 }}s{{ end }}
+    </p>
+  </section>
+
+  {{- if .Pages }}
+  <ul class="posts-list" role="list">
+    {{- range .Paginator.Pages }}
+    <li class="post-card">
+      <div class="post-card__meta">
+        <span class="post-card__date">{{ .Date.Format "2006-01-02" }}</span>
+        {{- with .Params.tags }}
+        <div class="post-card__tags">
+          {{- range first 3 . }}{{ if . }}
+          <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
+          {{- end }}{{ end }}
+        </div>
+        {{- end }}
+      </div>
+      <div class="post-card__title">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </div>
+      {{- with .Summary }}
+      <p class="post-card__summary">{{ . | plainify }}</p>
+      {{- end }}
+      <div class="post-card__footer">
+        <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+        {{- if gt .ReadingTime 0 }}<span class="reading-time">{{ .ReadingTime }} min read</span>{{- end }}
+      </div>
+    </li>
+    {{- end }}
+  </ul>
+
+  {{- $pager := .Paginator }}
+  {{- if gt $pager.TotalPages 1 }}
+  <nav class="pagination" aria-label="Pagination">
+    {{- if $pager.HasPrev }}
+    <a href="{{ $pager.Prev.URL }}" aria-label="Previous page">←</a>
+    {{- end }}
+    {{- range $pager.Pagers }}
+    {{- if eq . $pager }}
+    <span class="active" aria-current="page">{{ .PageNumber }}</span>
+    {{- else }}
+    <a href="{{ .URL }}">{{ .PageNumber }}</a>
+    {{- end }}
+    {{- end }}
+    {{- if $pager.HasNext }}
+    <a href="{{ $pager.Next.URL }}" aria-label="Next page">→</a>
+    {{- end }}
+  </nav>
+  {{- end }}
+
+  {{- else }}
+  <div class="info-box">
+    <div class="ascii-art">╔══(empty)
+║  No posts tagged "{{ .Title }}" yet.
+╚═══════════➤</div>
+  </div>
+  {{- end }}
+
+  <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line);">
+    <a href="{{ "/tags" | relURL }}" class="read-more" style="font-size: 12px;">← All tags</a>
+  </div>
+
+</div>
+{{ end }}

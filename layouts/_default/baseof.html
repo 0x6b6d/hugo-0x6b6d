@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+
+  {{- with .Site.Params.author }}
+  <meta name="author" content="{{ . }}">
+  {{- end }}
+
+  <meta property="og:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url"         content="{{ .Permalink }}">
+  {{- with .Site.Params.ogImage }}
+  <meta property="og:image" content="{{ . | absURL }}">
+  {{- end }}
+
+  <meta name="twitter:card"        content="summary">
+  <meta name="twitter:title"       content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  {{ range .AlternativeOutputFormats -}}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+  {{ end -}}
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='10' fill='%23613583'/></svg>">
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
+  {{ block "head_extra" . }}{{ end }}
+</head>
+<body>
+
+  {{- if .IsPage }}
+  <div class="progress-bar" role="progressbar" aria-hidden="true"></div>
+  {{- end }}
+
+  <header class="site-header">
+    <div class="container--wide">
+      <div class="site-header__inner">
+        <a href="{{ "/" | relURL }}" class="site-logo">
+          <span class="site-logo__dot"></span>
+          {{ .Site.Params.logoText | default .Site.Title }}
+        </a>
+
+        <nav aria-label="Main navigation">
+          <ul class="site-nav" id="site-nav">
+            {{- range .Site.Params.externalNav }}
+            <li><a href="{{ .url }}"{{ if .newTab }} target="_blank" rel="noopener"{{ end }}>{{ .name }}</a></li>
+            {{- end }}
+            <li class="has-submenu">
+              <a href="{{ "/" | relURL }}" class="submenu-trigger" {{ if .IsHome }}aria-current="page"{{ end }}>
+                {{ .Site.Params.blogNavLabel | default "Blog" }}
+                <svg class="submenu-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </a>
+              <div class="submenu">
+                <ul class="submenu__inner">
+                  <li><a href="{{ "/" | relURL }}" {{ if .IsHome }}class="active" aria-current="page"{{ end }}>Blog Home</a></li>
+                  {{ range .Site.Menus.main }}
+                  {{ if ne (.URL | relURL) ("/" | relURL) }}
+                  <li><a href="{{ .URL }}" {{ if $.IsMenuCurrent "main" . }}class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                  {{ end }}
+                  {{ end }}
+                  <li><a href="{{ "/tags" | relURL }}" {{ if hasPrefix .RelPermalink (relURL "/tags") }}class="active" aria-current="page"{{ end }}>Tags</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="rss-wrap"><a href="{{ "/index.xml" | relURL }}" class="rss-link" aria-label="RSS Feed">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+              RSS
+            </a></li>
+          </ul>
+        </nav>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container--wide">
+      <div class="site-footer__inner">
+        <span class="site-footer__copy">
+          © {{ now.Year }} {{ .Site.Params.copyrightName | default .Site.Title }}
+          {{- with .Site.Params.footerText }} · {{ . }}{{- end }}
+        </span>
+        <ul class="site-footer__links">
+          {{- with .Site.Params.social.github }}
+          <li><a href="https://github.com/{{ . }}" target="_blank" rel="noopener">GitHub</a></li>
+          {{- end }}
+          {{- with .Site.Params.social.twitter }}
+          <li><a href="https://twitter.com/{{ . }}" target="_blank" rel="noopener">Twitter</a></li>
+          {{- end }}
+          <li><a href="{{ "/index.xml" | relURL }}">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="scroll-top" aria-label="Back to top">↑</a>
+
+  <script src="{{ "js/main.js" | relURL }}"></script>
+  {{ block "scripts_extra" . }}{{ end }}
+</body>
+</html>

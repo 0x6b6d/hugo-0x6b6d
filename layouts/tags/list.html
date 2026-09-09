@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="container">
+  <section class="tag-page-header">
+    <div class="hero-eyebrow">Taxonomy</div>
+    <h1>All <span>Tags</span></h1>
+  </section>
+
+  {{- if .Data.Terms }}
+  <div class="tags-cloud">
+    {{- range .Data.Terms.Alphabetical }}
+    <a href="{{ .Page.Permalink }}" class="tag-cloud-item">
+      {{ .Page.Title }}
+      <span class="tag-cloud-item__count">{{ .Count }}</span>
+    </a>
+    {{- end }}
+  </div>
+  {{- else }}
+  <div class="info-box">No tags yet.</div>
+  {{- end }}
+</div>
+{{ end }}

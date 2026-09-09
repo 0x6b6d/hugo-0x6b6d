@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="container error-page">
+  <div class="error-page__inner">
+    <div class="hero-eyebrow" style="justify-content:center">Host Error</div>
+    <h1 id="glitch-title" data-text="404 Not Found">404 Not Found</h1>
+    <div class="info-box" style="text-align:left; max-width:420px; margin:0 auto 32px;">
+      <div class="ascii-art">╔══(404)
+║ The server can not find the requested page
+╚═══════════➤</div>
+    </div>
+    <p>
+      <a href="{{ "/" | relURL }}" class="read-more" style="font-size:14px;">← Return home</a>
+    </p>
+  </div>
+</div>
+{{ end }}

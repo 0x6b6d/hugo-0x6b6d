@@ -1,0 +1,112 @@
+/* =============================================================
+   0x6b6d Syntax Highlighting — Chroma (noClasses = false)
+   Custom dark theme tuned to the purple palette.
+   Hugo outputs .chroma spans; this file colors them.
+   ============================================================= */
+
+/* Wrapper */
+.highlight { position: relative; }
+
+/* Reset — all spans inside a code block inherit neutral first */
+.chroma { color: #e2e2e2; }
+
+/* ── Errors ── */
+.chroma .err { color: #ff5f57; }
+
+/* ── Line numbers ── */
+.chroma .ln,
+.chroma .lnt { color: #555565; user-select: none; padding-right: 16px; }
+
+/* ── Keywords ── */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr,
+.chroma .kt { color: #c792ea; font-weight: 600; }   /* soft purple */
+
+/* ── Names ── */
+.chroma .n  { color: #e2e2e2; }
+.chroma .na { color: #82aaff; }   /* attribute — blue */
+.chroma .nb { color: #c792ea; }   /* builtin — purple */
+.chroma .nc { color: #ffcb6b; }   /* class name — gold */
+.chroma .no { color: #f78c6c; }   /* constant — orange */
+.chroma .nd { color: #82aaff; }   /* decorator — blue */
+.chroma .ni { color: #e2e2e2; }
+.chroma .ne { color: #ff5f57; }   /* exception — red */
+.chroma .nf,
+.chroma .fm { color: #82aaff; }   /* function — blue */
+.chroma .nl { color: #e2e2e2; }
+.chroma .nn { color: #ffcb6b; }   /* namespace — gold */
+.chroma .nx { color: #82aaff; }
+.chroma .py { color: #e2e2e2; }
+.chroma .nt { color: #c792ea; }   /* tag — purple */
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi { color: #f07178; }   /* variable — pink-red */
+
+/* ── Literals ── */
+.chroma .l  { color: #c3e88d; }
+.chroma .ld { color: #c3e88d; }
+
+/* Strings */
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss { color: #c3e88d; }   /* string — green */
+
+/* Numbers */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .mo,
+.chroma .il { color: #f78c6c; }   /* number — orange */
+
+/* ── Operators ── */
+.chroma .o,
+.chroma .ow { color: #89ddff; }   /* operator — cyan */
+
+/* ── Punctuation ── */
+.chroma .p  { color: #89ddff; }
+
+/* ── Comments ── */
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf { color: #637777; font-style: italic; }   /* muted teal-grey */
+
+/* ── Generic ── */
+.chroma .g  { color: #e2e2e2; }
+.chroma .gd { color: #ff5f57; background: rgba(255,95,87,0.1); }  /* diff del */
+.chroma .ge { font-style: italic; }
+.chroma .gr { color: #ff5f57; }
+.chroma .gh { color: #8b4bbf; font-weight: bold; }
+.chroma .gi { color: #c3e88d; background: rgba(195,232,141,0.1); } /* diff add */
+.chroma .go { color: #888; }
+.chroma .gp { color: #555565; user-select: none; }
+.chroma .gs { font-weight: bold; }
+.chroma .gu { color: #8b4bbf; }
+.chroma .gt { color: #ff5f57; }
+.chroma .gl { text-decoration: underline; }
+
+/* ── Special: make the pre background match theme ── */
+.highlight pre {
+  background: #1c1c20 !important;
+}

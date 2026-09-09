@@ -1,0 +1,105 @@
+{{ define "main" }}
+<div class="container">
+
+  {{/* ── Hero ── */}}
+  <section class="home-hero">
+    <div class="hero-eyebrow">{{ .Site.Params.heroEyebrow | default "Personal blog" }}</div>
+
+    <h1><span id="text"></span><span class="cursor-blink">_</span></h1>
+
+    {{- with .Site.Params.heroSubtitle }}
+    <p class="subtitle">{{ . }}</p>
+    {{- end }}
+  </section>
+
+  {{/* ── Latest Posts ── */}}
+  {{- $section := .Site.Params.postsSection | default "posts" }}
+  {{- $posts := where .Site.RegularPages "Section" $section }}
+  {{- $posts = $posts | first 10 }}
+  {{- if $posts }}
+  <section>
+    <div class="section-label">Latest Posts</div>
+    <ul class="posts-list" role="list">
+      {{- range $posts }}
+      <li class="post-card">
+        <div class="post-card__meta">
+          <span class="post-card__date">{{ .Date.Format "2006-01-02" }}</span>
+          {{- with .Params.tags }}
+          <div class="post-card__tags" aria-label="Tags">
+            {{- range first 3 . }}{{ if . }}
+            <a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>
+            {{- end }}{{ end }}
+          </div>
+          {{- end }}
+        </div>
+        <div class="post-card__title">
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </div>
+        {{- with .Summary }}
+        <p class="post-card__summary">{{ . | plainify }}</p>
+        {{- end }}
+        <div class="post-card__footer">
+          <a href="{{ .Permalink }}" class="read-more">Read more →</a>
+          {{- if gt .ReadingTime 0 }}<span class="reading-time">{{ .ReadingTime }} min read</span>{{- end }}
+        </div>
+      </li>
+      {{- end }}
+    </ul>
+
+    {{- if gt (len (where .Site.RegularPages "Section" $section)) 10 }}
+    <div style="text-align:center; padding-bottom: 24px;">
+      <a href="{{ "/posts" | relURL }}" class="read-more" style="font-size:12px;">
+        View all posts →
+      </a>
+    </div>
+    {{- end }}
+  </section>
+  {{- end }}
+
+  {{/* ── Tag cloud teaser ── */}}
+  {{- $tags := .Site.Taxonomies.tags }}
+  {{- if $tags }}
+  <section style="padding: 24px 0 48px;">
+    <div class="section-label">Topics</div>
+    <div class="tags-cloud">
+      {{- range $name, $pages := $tags }}
+      <a href="{{ "/tags/" | relURL }}{{ $name | urlize }}/" class="tag-cloud-item">
+        {{ $name }}
+        <span class="tag-cloud-item__count">{{ len $pages }}</span>
+      </a>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+</div>
+
+<script>
+  const target = '{{ .Site.Params.heroTitle | default .Site.Title }}';
+  const chars  = '!<>-_\\/[]{}—=+*^?#________';
+  const el     = document.getElementById('text');
+  let frame = 0, done = false;
+
+  function decrypt() {
+    let out = '', n = 0;
+    for (let i = 0; i < target.length; i++) {
+      if (frame > i * 3) { out += target[i]; n++; }
+      else out += chars[Math.floor(Math.random() * chars.length)];
+    }
+    el.innerText = out;
+    if (n < target.length) { setTimeout(() => requestAnimationFrame(decrypt), 40); frame++; }
+    else { done = true; setInterval(() => { Math.random() > .85 && glitch(); }, 500); }
+  }
+
+  function glitch() {
+    if (!done) return;
+    const a = target.split('');
+    a[Math.floor(Math.random() * a.length)] = chars[Math.floor(Math.random() * chars.length)];
+    el.innerText = a.join('');
+    setTimeout(() => { el.innerText = target; }, 90 + Math.random() * 80);
+  }
+
+  // Use a slight delay or target window load to ensure it runs smooth alongside Hugo styles
+  window.addEventListener('DOMContentLoaded', decrypt);
+</script>
+{{ end }}
